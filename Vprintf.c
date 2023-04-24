@@ -2,6 +2,12 @@
 #include <stdarg.h>
 #include <stdio.h>
 /**
+ *NonPrintableChar - print nonPrintable character
+ *@str: string format
+ *
+*/
+void NonPrintableChar(char *str);
+/**
  *my_vprintf - function work as vprintf function
  *@ap: initialization
  *@format: string
@@ -16,7 +22,7 @@ int my_vprintf(const char *format, va_list ap)
 	int x, X, d, o, u;
 	void *ptr;
 	unsigned int i;
-	char c;
+	char c, *S;
 
 	while (*p)
 	{
@@ -87,7 +93,6 @@ int my_vprintf(const char *format, va_list ap)
 						len++;
 					}
 					break;
-
 				case 'p':
 					ptr = va_arg(ap, int*);
 					sprintf(buffer, "%p", ptr);
@@ -116,6 +121,10 @@ int my_vprintf(const char *format, va_list ap)
 						putchar(buffer[j]);
 						len++;
 					}
+					break;
+				case 'S':
+					S = va_arg(ap, char *);
+					NonPrintableChar(S);
 					break;
 				default:
 					putchar(*p);
