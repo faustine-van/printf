@@ -129,7 +129,10 @@ int my_vprintf(const char *format, va_list ap)
 						S ="(NULL)";
 						putchar(S[j]);
 					}
-					NonPrintableChar(S);
+					else
+					{
+						NonPrintableChar(S);
+					}
 					break;
 				default:
 					putchar(*p);
