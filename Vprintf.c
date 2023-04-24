@@ -37,7 +37,8 @@ int my_vprintf(const char *format, va_list ap)
 					s = va_arg(ap, char *);
 					if (s == NULL)
 					{
-						printf("(NULL)");
+						s = "(NULL)";
+						putchar(s[j]);
 					}
 					sprintf(buffer, "%s", s);
 					for (j = 0; buffer[j] != '\0'; j++)
