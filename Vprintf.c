@@ -126,8 +126,7 @@ int my_vprintf(const char *format, va_list ap)
 					S = va_arg(ap, char *);
 					if (S == NULL)
 					{
-						S ="(NULL)";
-						putchar(S[j]);
+						printf("(NULL)");
 					}
 					else
 					{
