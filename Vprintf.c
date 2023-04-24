@@ -37,7 +37,7 @@ int my_vprintf(const char *format, va_list ap)
 					s = va_arg(ap, char *);
 					if (s == NULL)
 					{
-						printf("NULL");
+						printf("(NULL)");
 					}
 					sprintf(buffer, "%s", s);
 					for (j = 0; buffer[j] != '\0'; j++)
@@ -77,7 +77,6 @@ int my_vprintf(const char *format, va_list ap)
 						len++;
 					}
 					break;
-					
 				case 'X':
 					X = va_arg(ap, int);
 					sprintf(buffer, "%X", X);
@@ -117,7 +116,6 @@ int my_vprintf(const char *format, va_list ap)
 						len++;
 					}
 					break;
-
 				default:
 					putchar(*p);
 					len++;
