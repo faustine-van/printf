@@ -39,6 +39,11 @@ int my_vprintf(const char *format, va_list ap)
 					sprintf(buffer, "%s", s);
 					for (j = 0; buffer[j] != '\0'; j++)
 					{
+						if (buffer == NULL)
+						{
+							s = "(NULL)";
+							putchar(s[j]);
+						}
 						putchar(buffer[j]);
 						len++;
 					}
