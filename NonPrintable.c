@@ -9,10 +9,6 @@ void NonPrintableChar(char *str)
 {
 	while (*str)
 	{
-		if (str == NULL)
-		{
-			printf("(NULL)");
-		}
 		if (*str < 32 || *str >= 127)
 		{
 			printf("\\x%02X", *str);

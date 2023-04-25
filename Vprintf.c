@@ -1,6 +1,15 @@
 #include "main.h"
 #include <stdarg.h>
 #include <stdio.h>
+#include <stdlib.h>
+/**
+ *decimal_to_anyBase - convert decimal to any base
+ *@n: digit to be converted into binary
+ *@base: any base to convert into
+ *@converted: convert to any base
+ *Return: 0;
+*/
+void decimal_to_anyBase(char *converted, unsigned int n, int base);
 /**
  *NonPrintableChar - print nonPrintable character
  *@str: string format
@@ -21,7 +30,7 @@ int my_vprintf(const char *format, va_list ap)
 	char *s;
 	int x, X, d, o, u;
 	void *ptr;
-	unsigned int i;
+	unsigned int i, b;
 	char c, *S;
 
 	while (*p)
@@ -116,6 +125,15 @@ int my_vprintf(const char *format, va_list ap)
 				case 'u':
 					u = va_arg(ap, int);
 					sprintf(buffer, "%u", u);
+					for (j = 0; buffer[j] != '\0'; j++)
+					{
+						putchar(buffer[j]);
+						len++;
+					}
+					break;
+				case 'b':
+					b = va_arg(ap, unsigned int);
+					decimal_to_anyBase(buffer, b, 2);
 					for (j = 0; buffer[j] != '\0'; j++)
 					{
 						putchar(buffer[j]);
