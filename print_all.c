@@ -1,15 +1,29 @@
 #include <stdio.h>
 #include "main.h"
 /**
- *print_all - print_all
- *@buffer: buffer used to print
+ *print_charater - print_all
+ *@ap: used to print
+ *Return: 1
 */
-void print_all(char *buffer)
+int print_charater(va_list ap)
 {
-	int i;
+	putchar(va_arg(ap, int));
+	return (1);
+}
+/**
+ *print_string - print_all
+ *@ap: used to print
+ *Return: a
+*/
+int print_string(va_list ap)
+{
+	int a;
+	char *str;
 
-	for (i = 0; buffer[i] != '\0'; i++)
-	{
-		putchar(buffer[i]);
-	}
+	str = va_arg(ap, char *);
+	if (str == NULL)
+		str = "(null)";
+	for (a = 0; str[a] != '\0'; a++)
+		putchar(str[a]);
+	return (a);
 }

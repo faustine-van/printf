@@ -15,11 +15,11 @@ int my_vprintf(const char *format, va_list ap)
 	int j, len = 0;
 	const char *p = format;
 	char buffer[20];
-	char *s;
+	/*char *s;*/
 	int x, X, d, o, u;
 	void *ptr;
 	unsigned int i, b;
-	char c, *S;
+	char *S;
 
 	while (*p)
 	{
@@ -32,23 +32,10 @@ int my_vprintf(const char *format, va_list ap)
 			switch (*++p)
 			{
 				case 'c':
-					c = va_arg(ap, int);
-					putchar(c);
-					len++;
+					print_charater(ap);
 					break;
 				case 's':
-					s = va_arg(ap, char *);
-					if (buffer == NULL)
-					{
-						s = "(NULL)";
-						write(1, s, strlen(s));
-					}
-					sprintf(buffer, "%s", s);
-					for (j = 0; buffer[j] != '\0'; j++)
-					{
-						putchar(buffer[j]);
-						len++;
-					}
+					print_string(ap);
 					break;
 				case '%':
 					putchar('%');
@@ -121,6 +108,8 @@ int my_vprintf(const char *format, va_list ap)
 					break;
 				case 'b':
 					b = va_arg(ap, unsigned int);
+					if (b < 1)
+						return (-1);
 					decimal_to_anyBase(buffer, b, 2);
 					for (j = 0; buffer[j] != '\0'; j++)
 					{
