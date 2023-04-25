@@ -45,12 +45,20 @@ int my_vprintf(const char *format, va_list ap)
 				case 'd':
 					d = va_arg(ap, int);
 					sprintf(buffer, "%d", d);
-					print_all(buffer);
+					for (j = 0; buffer[j] != '\0'; j++)
+					{
+						putchar(buffer[j]);
+						len++;
+					}
 					break;
 				case 'i':
 					i = va_arg(ap, unsigned int);
 					sprintf(buffer, "%i", i);
-					print_all(buffer);
+					for (j = 0; buffer[j] != '\0'; j++)
+					{
+						putchar(buffer[j]);
+						len++;
+					}
 					break;
 				case 'x':
 					x = va_arg(ap, int);
