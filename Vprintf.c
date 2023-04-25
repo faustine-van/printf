@@ -125,13 +125,9 @@ int my_vprintf(const char *format, va_list ap)
 				case 'S':
 					S = va_arg(ap, char *);
 					if (S == NULL)
-					{
 						printf("(NULL)");
-					}
 					else
-					{
 						NonPrintableChar(S);
-					}
 					break;
 				default:
 					putchar(*p);
