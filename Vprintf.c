@@ -3,20 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
- *decimal_to_anyBase - convert decimal to any base
- *@n: digit to be converted into binary
- *@base: any base to convert into
- *@converted: convert to any base
- *Return: 0;
-*/
-void decimal_to_anyBase(char *converted, unsigned int n, int base);
-/**
- *NonPrintableChar - print nonPrintable character
- *@str: string format
- *
-*/
-void NonPrintableChar(char *str);
-/**
  *my_vprintf - function work as vprintf function
  *@ap: initialization
  *@format: string
@@ -50,17 +36,7 @@ int my_vprintf(const char *format, va_list ap)
 					break;
 				case 's':
 					s = va_arg(ap, char *);
-					if (s == NULL)
-					{
-						s = "(NULL)";
-						putchar(s[j]);
-					}
-					sprintf(buffer, "%s", s);
-					for (j = 0; buffer[j] != '\0'; j++)
-					{
-						putchar(buffer[j]);
-						len++;
-					}
+					print_all(s);
 					break;
 				case '%':
 					putchar('%');
@@ -69,20 +45,12 @@ int my_vprintf(const char *format, va_list ap)
 				case 'd':
 					d = va_arg(ap, int);
 					sprintf(buffer, "%d", d);
-					for (j = 0; buffer[j] != '\0'; j++)
-					{
-						putchar(buffer[j]);
-						len++;
-					}
+					print_all(buffer);
 					break;
 				case 'i':
 					i = va_arg(ap, unsigned int);
 					sprintf(buffer, "%i", i);
-					for (j = 0; buffer[j] != '\0'; j++)
-					{
-						putchar(buffer[j]);
-						len++;
-					}
+					print_all(buffer);
 					break;
 				case 'x':
 					x = va_arg(ap, int);
@@ -134,18 +102,11 @@ int my_vprintf(const char *format, va_list ap)
 				case 'b':
 					b = va_arg(ap, unsigned int);
 					decimal_to_anyBase(buffer, b, 2);
-					for (j = 0; buffer[j] != '\0'; j++)
-					{
-						putchar(buffer[j]);
-						len++;
-					}
+					print_all(buffer);
 					break;
 				case 'S':
 					S = va_arg(ap, char *);
-					if (S == NULL)
-						printf("(NULL)");
-					else
-						NonPrintableChar(S);
+					NonPrintableChar(S);
 					break;
 				default:
 					putchar(*p);
