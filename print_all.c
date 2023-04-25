@@ -15,15 +15,16 @@ int print_charater(va_list ap)
  *@ap: used to print
  *Return: a
 */
-int print_string(va_list ap)
+void print_string(va_list ap)
 {
 	int a;
 	char *str;
+	char buffer[20];
 
 	str = va_arg(ap, char *);
 	if (str == NULL)
 		str = "(null)";
-	for (a = 0; str[a] != '\0'; a++)
-		putchar(str[a]);
-	return (a);
+	sprintf(buffer, "%s", str);
+	for (a = 0; buffer[a] != '\0'; a++)
+		putchar(buffer[a]);
 }
