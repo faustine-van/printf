@@ -21,6 +21,10 @@ int my_vprintf(const char *format, va_list ap)
 
 	while (*p)
 	{
+		if (p == NULL)
+		{
+			return (-1);
+		}
 		if (*p == '%')
 		{
 			switch (*++p)
