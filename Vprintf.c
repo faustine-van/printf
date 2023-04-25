@@ -120,8 +120,6 @@ int my_vprintf(const char *format, va_list ap)
 					break;
 				case 'b':
 					b = va_arg(ap, unsigned int);
-					if (b < 1)
-						return (-1);
 					decimal_to_anyBase(buffer, b, 2);
 					for (j = 0; buffer[j] != '\0'; j++)
 					{
