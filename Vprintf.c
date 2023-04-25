@@ -36,7 +36,8 @@ int my_vprintf(const char *format, va_list ap)
 					break;
 				case 's':
 					s = va_arg(ap, char *);
-					print_all(s);
+					sprintf(buffer, "%s", s);
+					print_all(buffer);
 					break;
 				case '%':
 					putchar('%');
