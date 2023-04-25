@@ -15,7 +15,7 @@ int my_vprintf(const char *format, va_list ap)
 	int j, len = 0;
 	const char *p = format;
 	char buffer[20];
-	char *s, *r;
+	char *s;
 	int x, X, d, o, u;
 	void *ptr;
 	unsigned int i, b;
@@ -130,15 +130,6 @@ int my_vprintf(const char *format, va_list ap)
 				case 'S':
 					S = va_arg(ap, char *);
 					NonPrintableChar(S);
-					break;
-				case 'r':
-					r = va_arg(ap, char *);
-					revString(r);
-
-					while(*r != '\0')
-					{
-						putchar(*r++);
-					}
 					break;
 				default:
 					putchar(*p);
