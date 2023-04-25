@@ -21,10 +21,6 @@ int my_vprintf(const char *format, va_list ap)
 
 	while (*p)
 	{
-		if (p == NULL)
-		{
-			return (-1);
-		}
 		if (*p == '%')
 		{
 			switch (*++p)
@@ -36,6 +32,11 @@ int my_vprintf(const char *format, va_list ap)
 					break;
 				case 's':
 					s = va_arg(ap, char *);
+					if (s == NULL)
+					{
+						s = "(NULL)";
+						putchar(s[j]);
+					}
 					sprintf(buffer, "%s", s);
 					for (j = 0; buffer[j] != '\0'; j++)
 					{
