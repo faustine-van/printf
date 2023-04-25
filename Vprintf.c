@@ -2,6 +2,8 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 /**
  *my_vprintf - function work as vprintf function
  *@ap: initialization
@@ -36,14 +38,14 @@ int my_vprintf(const char *format, va_list ap)
 					break;
 				case 's':
 					s = va_arg(ap, char *);
+					if (buffer == NULL)
+					{
+						s = "(NULL)";
+						write(1, s, strlen(s));
+					}
 					sprintf(buffer, "%s", s);
 					for (j = 0; buffer[j] != '\0'; j++)
 					{
-						if (buffer == NULL)
-						{
-							s = "(NULL)";
-							putchar(s[j]);
-						}
 						putchar(buffer[j]);
 						len++;
 					}
