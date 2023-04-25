@@ -37,7 +37,11 @@ int my_vprintf(const char *format, va_list ap)
 				case 's':
 					s = va_arg(ap, char *);
 					sprintf(buffer, "%s", s);
-					print_all(buffer);
+					for (j = 0; buffer[j] != '\0'; j++)
+					{
+						putchar(buffer[j]);
+						len++;
+					}
 					break;
 				case '%':
 					putchar('%');
@@ -111,7 +115,11 @@ int my_vprintf(const char *format, va_list ap)
 				case 'b':
 					b = va_arg(ap, unsigned int);
 					decimal_to_anyBase(buffer, b, 2);
-					print_all(buffer);
+					for (j = 0; buffer[j] != '\0'; j++)
+					{
+						putchar(buffer[j]);
+						len++;
+					}
 					break;
 				case 'S':
 					S = va_arg(ap, char *);
