@@ -1,22 +1,34 @@
 #include "main.h"
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 /**
  *NonPrintableChar - handle and  print nonPrintable character
  *@str: string format
- *
+ *Return: pointer pointed to
 */
-void NonPrintableChar(char *str)
+char *NonPrintableChar(char *str)
 {
-	while (*str)
+	char *ptr;
+
+	ptr = malloc(sizeof(char) + 1);
+	if (ptr == NULL)
 	{
-		if (*str < 32 || *str >= 127)
+		return (NULL);
+	}
+	strcpy(ptr, str);
+	while (*ptr)
+	{
+		if (*ptr < 32 || *ptr >= 127)
 		{
-			printf("\\x%02X", *str);
+			printf("\\x%02X", *ptr);
 		}
 		else
 		{
-			putchar(*str);
+			putchar(*ptr);
 		}
-		str++;
+		ptr++;
 	}
+	return (ptr);
+	free(ptr);
 }

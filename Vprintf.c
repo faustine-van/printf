@@ -19,6 +19,7 @@ int my_vprintf(const char *format, va_list ap)
 	int x, X, d, o, u;
 	void *ptr;
 	unsigned int i, b;
+	unsigned long int ld;
 	char c, *S;
 
 	while (*p)
@@ -65,6 +66,15 @@ int my_vprintf(const char *format, va_list ap)
 				case 'i':
 					i = va_arg(ap, unsigned int);
 					sprintf(buffer, "%i", i);
+					for (j = 0; buffer[j] != '\0'; j++)
+					{
+						putchar(buffer[j]);
+						len++;
+					}
+					break;
+				case 'l':
+					ld = va_arg(ap, unsigned long int);
+					sprintf(buffer, "%ld", ld);
 					for (j = 0; buffer[j] != '\0'; j++)
 					{
 						putchar(buffer[j]);
