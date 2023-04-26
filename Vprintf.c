@@ -163,4 +163,5 @@ int my_vprintf(const char *format, va_list ap)
 	}
 	va_end(ap);
 	return (len);
+	free(ptr_buffer);
 }
