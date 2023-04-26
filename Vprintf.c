@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <stddef.h>
 /**
  *my_vprintf - function work as vprintf function
  *@ap: initialization
@@ -15,6 +16,8 @@ int my_vprintf(const char *format, va_list ap)
 	int j, len = 0;
 	const char *p = format;
 	char buffer[20];
+	char buffer2[1024];
+	char *ptr_buffer;
 	char *s;
 	int x, X, d, o, u;
 	void *ptr;
@@ -22,6 +25,10 @@ int my_vprintf(const char *format, va_list ap)
 	unsigned long int ld;
 	char c, *S;
 
+	ptr_buffer = malloc(sizeof(s) * 1024);
+	if (ptr_buffer == NULL)
+		return (-1);
+	ptr_buffer = buffer2;
 	while (*p)
 	{
 		if (p == NULL)
@@ -41,14 +48,14 @@ int my_vprintf(const char *format, va_list ap)
 					s = va_arg(ap, char *);
 					if (s == NULL)
 					{
-						s = "(NULL)";
+						s = "(null)";
 					}
-					sprintf(buffer, "%s", s);
-					for (j = 0; buffer[j] != '\0'; j++)
+					sprintf(ptr_buffer, "%s", s);
+					for (j = 0; ptr_buffer[j] != '\0'; j++)
 					{
-						putchar(buffer[j]);
+						putchar(ptr_buffer[j]);
 						len++;
-					}	
+					}
 					break;
 				case '%':
 					putchar('%');
